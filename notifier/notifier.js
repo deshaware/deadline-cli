@@ -29,7 +29,9 @@ const notify = ({title, message}, cb) => {
         title: title,
         message: message,
         icon: path.join(__dirname, 'img', '/deadline.png'),
-        actions: ['OK', 'Cancel']
+        actions: ['Pending', 'Completed'],
+        timeout: 15,
+        open: true
         }, (err, data) => {
           // Will also wait until notification is closed.
           console.log('Waited');
@@ -52,10 +54,10 @@ notifier.on('timeout', () => {
   });
   
   // Buttons actions (lower-case):
-  notifier.on('ok', () => {
+  notifier.on('pending', () => {
     console.log('"Ok" was pressed');
   });
-  notifier.on('cancel', () => {
+  notifier.on('completed', () => {
     console.log('"Cancel" was pressed');
   });
 
